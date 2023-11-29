@@ -10,7 +10,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class MemoryMemberRepositoryTest {
+class MemoryMemberRepositoryTest {
 
     MemoryMemberRepository repository = new MemoryMemberRepository();
 
@@ -18,6 +18,7 @@ public class MemoryMemberRepositoryTest {
     public void afterEach() {
         repository.clearStore();
     }
+    // 테스트시, 순서에 상관없도록 하기 위함.
 
     @Test
     public void save() {
@@ -29,6 +30,7 @@ public class MemoryMemberRepositoryTest {
         Member result = repository.findById(member.getId()).get();
         //System.out.println("result = " + (result== member));
         Assertions.assertEquals(result, member);
+        // Assertions.assertThat(member).isEqualTo(result);
     }
 
     @Test
